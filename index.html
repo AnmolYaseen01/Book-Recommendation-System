@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>Google Books Embedded Viewer API Example</title>
+    <script type="text/javascript" src="https://www.google.com/books/jsapi.js"></script>
+    <style>
+      body {
+        display: grid;
+        place-items: center; /* Center items both horizontally and vertically */
+        height: 100vh; /* Full viewport height */
+        margin: 0; /* Remove default margin */
+      }
+      #viewerCanvas {
+        width: 400px;
+        height: 400px;
+        padding: 20px;
+        border: 1px solid black;
+      }
+    </style>
+    <script type="text/javascript">
+      google.books.load();
+      
+      function alertNotFound() {
+        alert("Could not embed the book!");
+      }
+      
+      function alertInitialized() {
+        alert("Book successfully embedded!");
+      }
+
+      function initialize() {
+        var viewer = new google.books.DefaultViewer(document.getElementById('viewerCanvas'));
+        viewer.load('ISBN:0738531367', alertNotFound, alertInitialized);
+      }
+
+      google.books.setOnLoadCallback(initialize);
+    </script>
+  </head>
+  <body>
+    <div id="viewerCanvas"></div>
+  </body>
+</html>
